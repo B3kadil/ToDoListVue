@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>To-Do List app</title>
+</head>
+<body>
+<div class="container" id="app">
+    <div class="todo-app">
+        <h2>{{titleApp}}<img src="images/icon.png" alt=""></h2>
+        <div class="row">
+            <input
+                    @keydown.enter="addToDo()"
+                    v-model="inputValue"
+                    type="text" name="" id="">
+            <button class="addList" @click="addToDo()">Add</button>
+        </div>
+        <ul id="list-container" v-if="lists.length!==0">
+            <li v-for="(item, idx) in lists" :key="idx" :class="{ checked: checked.includes(idx) }">
+                <span @click="toggleChecked(idx)">{{ item }}</span>
+                <button class="removeList" @click="removeList(idx)">remove</button>
+            </li>
+        </ul>
+        <h3 v-if="lists.length===0">Add todo bro</h3>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
